@@ -1,0 +1,214 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Formularios I</title>
+    <style>
+
+        body{
+            background-color:#FFC;
+        }
+
+        #principal{
+
+            padding:10px 10px 10px 50px;
+            background-color:#F93;
+            box-shadow: 10px 10px 5px 0px #999999;
+            border-radius: 10px;
+        }
+
+        td{
+            padding-bottom:25px;
+        }
+        h1{
+            text-align:center;
+        }
+
+        .error{
+            display:block;
+            color:green;
+        }
+
+        input.error{
+            border:2px solid red;
+        }
+
+
+    </style>
+    <script src="js/jquery.js"></script>
+    <script src="js/validation.js"></script>
+
+
+    <script>
+
+        $(document).ready(function() {
+
+            $("#form_datos").validate({
+                rules:{
+
+                    nombre:{
+                        required:true,
+                        minlength:3,
+                    },
+
+                    apellido:{
+                        required:true,
+                        minlength:3,
+                    },
+
+                    f_nacimiento:{
+                        required:true,
+                        date:true
+                    },
+
+                    password:{
+                        required:true,
+                        minlength:5,
+                    },
+
+                    confirm_password:{
+                        required:true,
+                        minlength:5,
+                        equalTo: "#password"
+                    },
+                    email:{
+                        email:true,
+                        required:true,
+                    },
+                    edad:{
+                        number:true,
+                        required:true,
+                        min:12,
+                        max:110,
+                        //range:[12,110]
+                    },
+                    p_web:"url"
+
+                },
+                messages:{
+                    nombre:{
+                        required:"Por favor, introduce tu nombre",
+                        minlength:"Tu nombre debe de tener al menos 3 caracteres"
+                    },
+                    apellido:{
+                        required:"Por favor, introduce tu apellido",
+                        minlength:"Tu apellido debe de tener al menos 3 caracteres"
+                    },
+                    f_nacimiento:{
+                        required:"Por favor, introduce una fecha válida",
+                        date:"Formato válido: MM/DD/AAAA"
+                    },
+                    email:{
+                        required:"Por favor, introduce tu email",
+                        email:"El formato de e-mail no es válido"
+                    },
+                    password:{
+                        required:"Por favor, introduce una contraseña de al menos 5 caracteres",
+                        minlength:"La contraseña debe de tener al menos 5 caracteres"
+                    },
+
+                    confirm_password:{
+                        required:"Por favor, introduce una contraseña de al menos 5 caracteres",
+                        minlength:"La contraseña debe de tener al menos 5 caracteres",
+                        equalTo:"Las contraseñas no coinciden"
+                    },
+                    p_web: "La dirección introducida no tiene formato de url, debe empezar por http ó https, seguido de ://www.",
+                    edad:{
+                        min:"La edad tiene que ser igual o superior a 12 años",
+                        max: "La edad tiene que ser menor o igual que 110 años",
+                        number:"Se debe introducir un número",
+                        required:"Por favor, introduzca una edad válida"
+                    }
+                }
+
+
+            });
+
+
+
+
+
+
+
+
+        });
+    </script>
+</head>
+
+<body>
+<h1>Envío de datos</h1>
+<div id="contenedor">
+    <form id="form_datos">
+        <table width="25%" border="0" align="center" id="principal">
+            <tr>
+                <td>Nombre:</td>
+                <td><label for="nombre"></label>
+                    <input type="text" name="nombre" id="nombre" minlength="3"  ></td>
+            </tr>
+            <tr>
+                <td>Apellidos:</td>
+                <td><input type="text" name="apellido" id="apellido" minlength="3" ></td>
+            </tr>
+            <tr>
+                <td>Fecha Nacimiento</td>
+                <td><label for="f_nacimiento"></label>
+                    <input type="text" name="f_nacimiento" id="f_nacimiento" class="date" ></td>
+            </tr>
+            <tr>
+                <td>Edad:</td>
+                <td><input type name="edad" type="edad" id="edad" size="4"></td>
+            </tr>
+            <tr>
+                <td>Código Postal:</td>
+                <td><label for="c_postal"></label>
+                    <input type="text" name="c_postal" id="c_postal"></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><label for="mail"></label>
+                    <input type="email" name="mail" id="mail" title=" Por favor, introduzca una dirección válida"></td>
+            </tr>
+            <tr>
+                <td>Página web:</td>
+                <td><label for="p_web"></label>
+                    <input  name="p_web" id="p_web" ></td>
+            </tr>
+            <tr>
+                <td>Contraseña:</td>
+                <td><label for="password"></label>
+                    <input type="password" name="password" id="password" ></td>
+            </tr>
+            <tr>
+                <td>Confirmación contraseña:</td>
+                <td><label for="confirm_password"></label>
+                    <input type="password" name="confirm_password" id="confirm_password" ></td>
+            </tr>
+
+            <tr>
+                <td><p>País:</p></td>
+                <td><p>
+                    <label for="pais"></label>
+                    <select name="pais" id="pais">
+                        <option>España</option>
+                        <option>México</option>
+                        <option>Colombia</option>
+                        <option>Perú</option>
+                        <option>Chile</option>
+                        <option>Argentina</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" value="Enviar" id="comprobar"></td>
+
+            </tr>
+        </table>
+    </form>
+</div>
+
+<div id="las_aficiones"></div>
+</body>
+</html>
+
+
+

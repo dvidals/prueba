@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Documento sin título</title>
+<script src="js/jquery.js"></script>
+<script>
+$(document).ready(function(){
+
+	//open("http://www.pildorasinformaticas.es","Pildoras","width=300, height=200");
+
+    var propVent="width=300, height=200,top=200,left=300";
+
+    var miVentana=open("http://www.pildorasinformaticas.es","Pildoras",propVent);
+
+
+
+    $("#botonCerrar").click(function(e){
+
+        e.preventDefault();
+        miVentana.close();
+
+    });
+
+
+});
+	
+	
+
+</script>
+</head>
+
+<body>
+<a href="http://www.pildorasinformaticas.es">Ir a Píldoras</a>
+<br><br><br>
+<a href="" id="botonCerrar">Cerrar</a>
+</body>
+</html>

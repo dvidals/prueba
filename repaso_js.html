@@ -1,0 +1,124 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="js/jquery.js"></script>
+    <script>
+
+        $(document).ready(function(){
+            $("#boton1").hide().fadeIn(6000);
+            $("#mensaje").hide().fadeIn(5000);
+            //$("#errores").html("<p>Hay errores en el formulario</p>");
+            $("#errores").append("<p>Hay errores en el formulario</p>");
+            $("#errores").prepend("<p>Vamos a hablar de</p>");
+            $("#errores").before("<p>Con before estamos en otro elemento distinto</p>");
+            $("#errores").after("<p>Con after también estamos en otro elemento distinto</p>");
+            $("#errores h2").text("Tratamos errores");
+
+            $("html").dblclick(function(){
+                alert("Ayyyy");
+            });
+            $("a").mouseover(function(){
+                var mensaje="<p> Estás pasando el ratón por encima del link</p>";
+                $("#principal").append(mensaje);
+            });
+            $("#el_boton").click(function (){
+                $(this).val("Para de hacer click!!");
+            });
+
+            $("#el_campo").focus(function (){
+                $(this).val("Ahora vas a escribir");
+            });
+
+
+        });
+        document.write("<p>Hello World!</p>");
+
+        var a=5,b=3,c=8;
+        document.write("<p> La suma de "+ a+" y "+ b+" es igual a: "+(Number(a)+Number(b))+ "</p>");
+        document.write("<p> La multiplicación de "+ a+" y "+ b+" es igual a: "+(a*b)+ "</p>");
+
+        function operacion(a,b,c){
+            switch (c){
+                case "suma":
+                    var resultado=a+b;
+                    break;
+                case "resta":
+                    var resultado=a-b;
+                    break;
+                case "multiplicación":
+                    var resultado=a*b;
+                    break;
+                case "división":
+                    var resultado=a/b;
+                    break;
+                default:
+                    resultado="Operación errónea. Tiene que escribir suma, resta, multiplicación o división";
+            }
+
+            return resultado;
+        }
+
+        function aviso(){
+            alert ("Soy el desencadenante de la acción");
+        }
+
+       /* var a=Number(prompt("Introduce el primer número"));
+        var b=Number(prompt("Introduce el segundo número"));
+        var c=prompt("Escribe una operación: suma, resta, multiplicación o división");*/
+
+        var articulos=Array("camisa","pantalón","alfombra", "maillot");
+        articulos.push("balón"); //añade al final
+        articulos.unshift("raqueta");//añade al principio
+        //pop quita al final y shift quital al principio.
+
+
+
+
+    </script>
+
+</head>
+<body>
+<div id="errores">
+    <h2>Errores</h2>
+</div>
+<p id="mensaje">Esto es un mensaje para todos</p>
+<input type="button" id="boton1" onclick="aviso()">
+
+<div id="principal">
+    <h1>Introducción a eventos</h1>
+    <p><a href="#">Un link</a></p>
+    <form action="#" method="get">
+        <fieldset><legend>Formulario</legend><p>
+            <input name="button" type="button" id="el_boton" value="Un boton">
+        </p>
+        <p>
+            <input name="textfield" type="text" id="el_campo">
+        </p></fieldset>
+    </form>
+</div>
+
+<script>
+
+    var miboton=document.getElementById("boton1");
+    var mensaje=document.getElementById("mensaje");
+    document.write("<p>"+ mensaje.innerText +"</p>");
+
+    miboton.style.width="300px";
+    miboton.style.height="300px";
+    miboton.style.background="red";
+    miboton.value="Hola!";
+
+    document.write("<p>"+ operacion(a,b,c) +"</p>");
+    document.write("<p>"+ articulos.length +"</p>");
+
+    document.write("<p>"+ articulos[2] +"</p>");
+
+
+
+
+
+</script>
+
+</body>
+
+</html>

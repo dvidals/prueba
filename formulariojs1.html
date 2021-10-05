@@ -1,0 +1,252 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Formularios I</title>
+    <style>
+
+        body{
+            background-color:#FFC;
+        }
+
+        #principal{
+
+            padding:10px 10px 10px 50px;
+            background-color:#F93;
+            box-shadow: 10px 10px 5px 0px #999999;
+            border-radius: 10px;
+        }
+
+        td{
+            padding-bottom:25px;
+        }
+        h1{
+            text-align:center;
+        }
+
+        #las_aficiones {
+            position: absolute;
+            top: 100px;
+            left: 500px;
+            width:50%;
+            height:80%;
+            background-color:red;
+            visibility: hidden;
+            text-align: center;
+            font-size:1.2vw;
+            font-weight: bold;
+            color:white;
+        }
+
+    </style>
+    <script src="js/jquery.js"></script>
+
+    <script>
+
+        $(document).ready(function() {
+
+
+            $("#comprobar").click(function(){
+                /*
+                var nombre=$("#nombre").val();
+                var apellido=$("#apellido").val();
+                var apellido=$("#edad").val();
+                */
+                /*
+                $(":text").each(function(){
+
+                    alert($(this).val());
+                });
+                    */
+                /*
+                $(":input").each(function(){
+
+                    alert($(this).val());
+
+                });
+                    */
+
+                /*
+                if($("#masculino").attr("checked")){
+
+                    alert ("Eres hombre");
+                } else{
+                    alert ("Eres mujer");
+                }
+            */
+            });
+
+            $("#nombre").focus(function(){
+
+                //var campo_nombre=$(this);
+
+                var campo_nombre=$("#nombre").val("");
+
+            });
+
+            $("#edad").blur(function(){
+
+                if(isNaN($("#edad").val())){
+                    alert("no es un número");
+                    $("#edad").val("");
+                    $("#edad").focus();
+
+                }
+
+            });
+
+            var genero="";
+            $(":radio").click(function(){
+
+                alert($(this).val());
+                genero=$(this).val();
+
+            });
+
+
+            var aficiones= new Array();
+            var i=0;
+            $(":checkbox").click(function(){
+
+
+                aficiones[i]=($(this).val());
+                //alert ("Posición: " + i + " Valor: " + aficiones[i]);
+                //$("#las_aficiones").append("<p> Aficción "+ (i+1)+" : "+ aficiones[i] + "</p>");
+                //$("#totales").html("Aficciones totales: "+(i+1));
+                i++;
+
+            });
+
+            var elpais="";
+            $("#pais").change(function(){
+
+                elpais=$(this).val();
+            });
+
+
+
+            $("#form_datos").submit(function(){
+
+
+                if($("#nombre").val()=="" || $("#nombre").val()=="Obligatorio nombre"){
+                    alert("Por favor, completa el nombre");
+                    alert (i);
+                    $("#nombre").focus();
+                    return false; //para que no se envié la información del formulario a la barra de direcciones cuando no se cumpla la condición.
+                }
+                if (elpais==""){
+                    alert("Por favor, selecciona un país");
+                    $("#pais").focus();
+                    return false;
+                }
+
+                $("#las_aficiones").append("<p>Nombre: " + $("#nombre").val() + "</p>");
+                $("#las_aficiones").append("<p>Apellido: " + $("#apellido").val() + "</p>");
+                $("#las_aficiones").append("<p>Edad: " + $("#edad").val() + "</p>");
+                $("#las_aficiones").append("<p>Género: " + genero + "</p>");
+                $("#las_aficiones").append("<p>Aficciones totales: " + i + "</p>");
+
+                for (var j=1; j<=i; j++){
+                    $("#las_aficiones").append("<p> Aficción "+ j+" : "+ aficiones[j-1] + "</p>");
+
+                }
+
+                $("#las_aficiones").append("<p> Pais: " + elpais + "</p>");
+
+                $("#contenedor").css("visibility","hidden");
+                $("#las_aficiones").css("visibility","visible");
+                return false;
+            });
+
+        });
+    </script>
+</head>
+
+<body>
+<h1>Envío de datos</h1>
+<div id="contenedor">
+    <form id="form_datos">
+        <table width="20%" border="0" align="center" id="principal">
+            <tr>
+                <td>Nombre:</td>
+                <td><label for="nombre"></label>
+                    <input type="text" name="nombre" id="nombre" value="Obligatorio nombre"></td>
+            </tr>
+            <tr>
+                <td>Apellido:</td>
+                <td><input type="text" name="apellido" id="apellido"></td>
+            </tr>
+            <tr>
+                <td>Edad:</td>
+                <td><input type="text" name="edad" id="edad"></td>
+            </tr>
+            <tr>
+                <td>Género:</td>
+                <td><p>
+                    <label>
+                        <input type="radio" name="genero" value="Masculino" id="masculino">
+                        masculino</label>
+                    <br>
+                    <label>
+                        <input type="radio" name="genero" value="Femenino" id="femenino">
+                        femenino</label>
+                    <br>
+                </p></td>
+            </tr>
+            <tr>
+                <td>País:</td>
+                <td><label for="pais"></label>
+                    <select name="pais" id="pais">
+                        <option>Selecciona un país</option>
+                        <option>España</option>
+                        <option>México</option>
+                        <option>Colombia</option>
+                        <option>Perú</option>
+                        <option>Chile</option>
+                        <option>Argentina</option>
+                    </select></td>
+            </tr>
+            <tr>
+                <td>Aficiones:</td>
+                <td><table width="200">
+                    <tr>
+                        <td><label>
+                            <input type="checkbox" name="deporte" value="Deporte" id="deporte">
+                            deporte</label></td>
+                        <td><label>
+                            <input type="checkbox" name="informatica" value="Informática" id="informatica">
+                            informatica</label></td>
+                    </tr>
+                    <tr>
+                        <td><label>
+                            <input type="checkbox" name="lectura" value="Lectura" id="lectura">
+                            lectura</label></td>
+                        <td><label>
+                            <input type="checkbox" name="cine" value="Cine" id="cine">
+                            cine</label></td>
+                    </tr>
+                    <tr>
+                        <td><label>
+                            <input type="checkbox" name="bares" value="Bares" id="bares">
+                            bares</label></td>
+                        <td><label>
+                            <input type="checkbox" name="naturaleza" value="Naturaleza" id="naturaleza">
+                            Naturaleza</label></td>
+                    </tr>
+
+                </table></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" value="Enviar" id="comprobar"></td>
+
+            </tr>
+        </table>
+    </form>
+</div>
+
+<div id="las_aficiones">
+    <p id="totales">  </p>
+
+</div>
+</body>
+</html>
